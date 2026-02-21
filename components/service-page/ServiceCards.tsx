@@ -14,7 +14,7 @@ export default function ServiceCards({ services }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.items.map((item, i) => (
             <div
-              key={i}
+              key={item.title}
               className="border border-gray-200 rounded-2xl p-7 hover:border-[var(--color-teal)] hover:shadow-md transition-all group"
             >
               <span className="text-[var(--color-teal)] text-xs font-bold uppercase tracking-widest mb-4 block">

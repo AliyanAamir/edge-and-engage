@@ -22,10 +22,10 @@ export default function ServiceOverview({ overview }: Props) {
 
           {/* Right: capabilities grid */}
           <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {overview.capabilities.map((cap, i) => (
+            {overview.capabilities.map((cap) => (
               <div
-                key={i}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:border-[var(--color-teal)] hover:shadow-sm transition-all"
+                key={cap.title}
+                className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[var(--color-teal)] hover:shadow-sm transition-all"
               >
                 <div className="w-8 h-1 bg-[var(--color-teal)] rounded-full mb-4" />
                 <h3 className="text-gray-900 font-bold text-sm mb-2">{cap.title}</h3>
