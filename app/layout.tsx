@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Edge-n-Engage | Leading Software & Product Development Agency",
+  title: "Edge and Engage | Leading Software & Product Development Agency",
   description:
     "We help companies across North America, Middle East, Africa and Asia Pacific with technological development.",
 }

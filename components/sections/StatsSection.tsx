@@ -1,11 +1,5 @@
 import Link from "next/link"
-
-const stats = [
-  { number: "3,000+", label: "Successful Projects" },
-  { number: "23+", label: "Countries Supported" },
-  { number: "250+", label: "Active Clients" },
-  { number: "15+", label: "Years of Enablement Experience" },
-]
+import { stats, statsContent } from "@/lib/data/stats"
 
 export default function StatsSection() {
   return (
@@ -15,22 +9,22 @@ export default function StatsSection() {
           {/* Left */}
           <div className="lg:w-1/2">
             <p className="text-[var(--color-teal)] text-xs font-bold uppercase tracking-widest mb-3">
-              Pioneering Trust and Innovation
+              {statsContent.label}
             </p>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
-              Devsinc&apos;s Achievements
+              {statsContent.heading}
             </h2>
             <p className="text-gray-500 text-base mb-4 leading-relaxed">
-              We take pride in empowering businesses worldwide with innovative solutions.
+              {statsContent.paragraph1}
             </p>
             <p className="text-gray-500 text-base mb-10 leading-relaxed">
-              Devsinc brings an unwavering commitment to excellence, backed by a global presence.
+              {statsContent.paragraph2}
             </p>
             <Link
-              href="/contact"
+              href={statsContent.ctaHref}
               className="inline-block px-8 py-4 bg-[var(--color-teal)] text-black font-bold rounded-full hover:bg-[var(--color-teal-dark)] transition-all"
             >
-              Get in Touch
+              {statsContent.ctaLabel}
             </Link>
           </div>
 

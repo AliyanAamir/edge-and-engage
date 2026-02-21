@@ -1,53 +1,13 @@
 import Link from "next/link"
 import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react"
-
-const companyLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about-us" },
-  { label: "Careers", href: "/career" },
-  { label: "Blog", href: "/articles" },
-  { label: "Contact", href: "/contact" },
-]
-
-const industryLinks = [
-  { label: "Travel & Hospitality", href: "/industry/travel-hospitality" },
-  { label: "Public Sector", href: "/industry/public-sector" },
-  { label: "Telecommunication", href: "/industry/telecommunication" },
-  { label: "Retail & CPG", href: "/industry/retail-and-cpg" },
-  { label: "Oil, Gas & Energy", href: "/industry/oil-gas-and-energy" },
-  { label: "Startups", href: "/industry/startups" },
-  { label: "E-commerce", href: "/industry/e-commerce-software-development" },
-  { label: "Banking & Fintech", href: "/industry/banking-fintech" },
-  { label: "Healthcare", href: "/industry/healthcare-pharmaceuticals" },
-  { label: "Gaming", href: "/industry/gaming" },
-]
-
-const serviceLinks = [
-  { label: "Generative AI", href: "/services/genai" },
-  { label: "Mobile App Development", href: "/services/mobile-development" },
-  { label: "Web Development", href: "/services/website-development" },
-  { label: "Custom Software", href: "/services/custom-development" },
-  { label: "DevOps", href: "/services/devops" },
-  { label: "UI/UX Design", href: "/services/ui-ux-design" },
-  { label: "Cybersecurity", href: "/services/cybersecurity-solutions" },
-  { label: "Data Analytics", href: "/services/data-analytics-and-insights" },
-  { label: "Cloud Application", href: "/services/cloud-application" },
-  { label: "Staff Augmentation", href: "/services/staff-augmentation" },
-]
-
-const resourceLinks = [
-  { label: "Blogs", href: "/articles" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Learning", href: "/learning" },
-]
-
-const offices = [
-  { country: "Pakistan", type: "Global Delivery Center", address: "Plot B, 281 Ghazi Rd, Khuda Buksh Colony KB Society, Lahore, Punjab" },
-  { country: "USA", type: "Regional Office", address: "18 S 2nd Street #120, San Jose, CA, 95113, United States" },
-  { country: "UAE", type: "Regional Office", address: "34HW+5J5 - Parkside Retail Level - Cluster R - Jumeirah Lakes Towers - Dubai" },
-  { country: "UK", type: "Regional Office", address: "128 City Road London, EC1V 2NX, United Kingdom" },
-  { country: "KSA", type: "Regional Office", address: "3141 Anas Ibn Malik Rd, Al Malqa, Riyadh 13521 KSA" },
-]
+import {
+  footerCompanyLinks,
+  footerIndustryLinks,
+  footerServiceLinks,
+  footerResourceLinks,
+  offices,
+} from "@/lib/data/navigation"
+import { site } from "@/lib/data/site"
 
 export default function Footer() {
   return (
@@ -58,7 +18,7 @@ export default function Footer() {
           <div>
             <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Company</h4>
             <ul className="flex flex-col gap-3">
-              {companyLinks.map((item) => (
+              {footerCompanyLinks.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
@@ -72,7 +32,7 @@ export default function Footer() {
           <div>
             <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Industries We Serve</h4>
             <ul className="flex flex-col gap-3">
-              {industryLinks.map((item) => (
+              {footerIndustryLinks.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
@@ -86,7 +46,7 @@ export default function Footer() {
           <div>
             <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Services & Solutions</h4>
             <ul className="flex flex-col gap-3">
-              {serviceLinks.map((item) => (
+              {footerServiceLinks.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
@@ -100,7 +60,7 @@ export default function Footer() {
           <div>
             <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Resources</h4>
             <ul className="flex flex-col gap-3">
-              {resourceLinks.map((item) => (
+              {footerResourceLinks.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
@@ -133,7 +93,9 @@ export default function Footer() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 flex-wrap">
-              <Link href="/" className="text-[var(--color-teal)] font-black text-xl">D</Link>
+              <Link href="/" className="text-[var(--color-teal)] font-black text-xl">
+                {site.logoLetter}
+              </Link>
               <Link href="/terms-conditions" className="text-gray-500 text-xs hover:text-white transition-colors">
                 Terms and Conditions
               </Link>
@@ -143,23 +105,23 @@ export default function Footer() {
             </div>
 
             <Link
-              href="mailto:global.business@devsinc.com"
+              href={`mailto:${site.email}`}
               className="text-[var(--color-teal)] text-sm font-semibold hover:underline"
             >
-              global.business@devsinc.com
+              {site.email}
             </Link>
 
             <div className="flex items-center gap-4">
-              <Link href="https://www.facebook.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
+              <Link href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Facebook size={18} />
               </Link>
-              <Link href="https://www.linkedin.com/company/developers-inc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
+              <Link href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Linkedin size={18} />
               </Link>
-              <Link href="https://www.instagram.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
+              <Link href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Instagram size={18} />
               </Link>
-              <Link href="https://x.com/devsinc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
+              <Link href={site.socials.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Twitter size={18} />
               </Link>
             </div>

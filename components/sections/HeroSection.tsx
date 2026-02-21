@@ -1,38 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
-const publications = [
-  {
-    name: "Forbes",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/Forbes-1.png",
-    width: 100,
-  },
-  {
-    name: "Business Insider",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/Business-Insider-1.png",
-    width: 130,
-  },
-  {
-    name: "New York Weekly",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/New-York-Weekly-1.png",
-    width: 130,
-  },
-  {
-    name: "Mashable",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/Mashable-1.png",
-    width: 110,
-  },
-  {
-    name: "Khaleej Times",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/Khaleej-Times-1.png",
-    width: 120,
-  },
-  {
-    name: "Yahoo Finance",
-    src: "https://www.devsinc.com/wp-content/uploads/2022/11/Yahoo-Finance-1.png",
-    width: 120,
-  },
-]
+import { heroContent, publications } from "@/lib/data/hero"
 
 export default function HeroSection() {
   return (
@@ -40,7 +8,7 @@ export default function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://www.devsinc.com/wp-content/uploads/2024/04/hero-bg.webp"
+          src={heroContent.backgroundImage}
           alt="City skyline at night"
           fill
           priority
@@ -55,24 +23,23 @@ export default function HeroSection() {
       <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto w-full py-20">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-            Building at the Speed of AI
+            {heroContent.heading}
           </h1>
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
-            We help companies across North America, Middle East, Africa and Asia
-            Pacific with technological development
+            {heroContent.subheading}
           </p>
           <Link
-            href="/contact"
+            href={heroContent.ctaHref}
             className="inline-block px-8 py-4 bg-[var(--color-teal)] text-black font-bold rounded-full text-base hover:bg-[var(--color-teal-dark)] transition-all"
           >
-            Get in Touch
+            {heroContent.ctaLabel}
           </Link>
         </div>
 
         {/* Featured In */}
         <div className="mt-20 md:mt-28">
           <p className="text-white/60 text-xs font-bold mb-6 uppercase tracking-widest">
-            Featured In:
+            {heroContent.featuredInLabel}
           </p>
           <div className="flex flex-wrap items-center gap-8 md:gap-12">
             {publications.map((pub) => (

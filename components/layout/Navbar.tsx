@@ -4,14 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 import SideDrawer from "./SideDrawer"
-
-const navItems = [
-  { label: "What we do" },
-  { label: "Who we help" },
-  { label: "Who We Are" },
-  { label: "How we deliver" },
-  { label: "Join devsinc" },
-]
+import { navItems } from "@/lib/data/navigation"
+import { site } from "@/lib/data/site"
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -23,9 +17,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between px-6 py-3 max-w-[1440px] mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-[var(--color-teal)] font-black text-2xl leading-none">D</span>
+            <span className="text-[var(--color-teal)] font-black text-2xl leading-none">
+              {site.logoLetter}
+            </span>
             <span className="text-gray-900 font-bold text-lg tracking-wide hidden sm:block">
-              devsinc
+              {site.name}
             </span>
           </Link>
 
@@ -44,14 +40,6 @@ export default function Navbar() {
 
           {/* Right CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="https://apply.workable.com/devsinc-17/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm font-semibold text-[var(--color-teal)] border border-[var(--color-teal)] rounded-full hover:bg-[var(--color-teal)] hover:text-black transition-all"
-            >
-              Explore Careers
-            </Link>
             <button
               onClick={() => setDrawerOpen(true)}
               className="px-4 py-2 text-sm font-semibold text-black bg-[var(--color-teal)] rounded-full hover:bg-[var(--color-teal-dark)] transition-all"
@@ -87,14 +75,6 @@ export default function Navbar() {
               </button>
             ))}
             <div className="flex flex-col gap-3 pt-3">
-              <Link
-                href="https://apply.workable.com/devsinc-17/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center px-4 py-2 text-sm font-semibold text-[var(--color-teal)] border border-[var(--color-teal)] rounded-full"
-              >
-                Explore Careers
-              </Link>
               <button
                 onClick={() => {
                   setDrawerOpen(true)

@@ -8,7 +8,6 @@ import AwardsSection from "@/components/sections/AwardsSection"
 import PartnershipsSection from "@/components/sections/PartnershipsSection"
 import InsightsSection from "@/components/sections/InsightsSection"
 import StatsSection from "@/components/sections/StatsSection"
-import CareersSection from "@/components/sections/CareersSection"
 import LeadershipSection from "@/components/sections/LeadershipSection"
 import ContactFormSection from "@/components/sections/ContactFormSection"
 
@@ -25,7 +24,6 @@ export default function Home() {
         <PartnershipsSection />
         <InsightsSection />
         <StatsSection />
-        <CareersSection />
         <LeadershipSection />
         <ContactFormSection />
       </main>
