@@ -1,16 +1,6 @@
 // lib/data/service-pages/types.ts
 
-export interface ServiceCapability {
-  title: string
-  description: string
-}
-
-export interface ServiceItem {
-  title: string
-  description: string
-}
-
-export interface WhyPoint {
+export interface LabeledItem {
   title: string
   description: string
 }
@@ -32,15 +22,15 @@ export interface ServicePageData {
     label: string
     heading: string
     description: string
-    capabilities: ServiceCapability[]
+    capabilities: LabeledItem[]
   }
   services: {
     heading: string
-    items: ServiceItem[]
+    items: LabeledItem[]
   }
   whyChooseUs: {
     heading: string
-    points: WhyPoint[]
+    points: LabeledItem[]
   }
   industries: string[]
   techStack: string[]
