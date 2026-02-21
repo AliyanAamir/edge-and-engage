@@ -16,7 +16,7 @@ export default function TechStack({ techStack }: Props) {
           {techStack.map((tech) => (
             <span
               key={tech}
-              className="px-5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)] transition-all cursor-default shadow-sm"
+              className="px-5 py-2.5 bg-white border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)] transition-all cursor-default shadow-sm"
             >
               {tech}
             </span>
