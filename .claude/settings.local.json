@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /d/Aliyan/Project/edge-n-engage && npx create-next-app@latest . --typescript --tailwind --app --src-dir=false --import-alias=\"@/*\" --yes 2>&1)",
+      "Bash(cd /d/Aliyan/Project/edge-n-engage && npm install react-hook-form @hookform/resolvers zod embla-carousel-react embla-carousel-autoplay lucide-react react-international-phone clsx tailwind-merge 2>&1)",
+      "Bash(cd /d/Aliyan/Project/edge-n-engage && npx tsc --noEmit 2>&1)",
+      "Bash(cd:*)",
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(cd \"D:/Aliyan/Project/edge-n-engage\" && npx tsc --noEmit 2>&1)",
+      "Bash(cd /d/Aliyan/Project/edge-n-engage && npm run build 2>&1)"
+    ]
+  }
+}
