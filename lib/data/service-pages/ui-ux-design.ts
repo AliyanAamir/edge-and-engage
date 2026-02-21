@@ -40,7 +40,7 @@ export const uiUxDesign: ServicePageData = {
     ],
   },
   whyChooseUs: {
-    heading: "Why Choose Edge and Engage for UX/UI",
+    heading: "Why Choose Edge and Engage for UI/UX Design",
     points: [
       { title: "Design + Engineering in One Team", description: "Our designers work alongside engineers — no handoff friction, no 'that's not buildable' surprises." },
       { title: "Metric-Driven Design", description: "We tie every design decision to conversion, retention, or task completion metrics — not just aesthetics." },
