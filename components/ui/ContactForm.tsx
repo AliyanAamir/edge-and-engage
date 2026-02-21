@@ -28,10 +28,10 @@ const serviceOptions = [
 ]
 
 const inputClass =
-  "w-full bg-transparent border border-[#3a3a3a] rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[var(--color-teal)] transition-colors"
+  "w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[var(--color-teal)] transition-colors"
 
 const labelClass =
-  "block text-white/70 text-xs font-semibold uppercase tracking-wide mb-2"
+  "block text-gray-600 text-xs font-semibold uppercase tracking-wide mb-2"
 
 const errorClass = "text-red-400 text-xs mt-1"
 
@@ -114,7 +114,7 @@ export default function ContactForm() {
         <label className={labelClass}>Region *</label>
         <select
           {...register("region")}
-          className={cn(inputClass, "bg-[#1a1a1a] cursor-pointer")}
+          className={cn(inputClass, "cursor-pointer")}
         >
           <option value="">Select Region</option>
           {regions.map((r) => (
@@ -137,7 +137,7 @@ export default function ContactForm() {
                 {...register("services")}
                 className="h-4 w-4 accent-[var(--color-teal)] rounded"
               />
-              <span className="text-white/70 text-xs">{service}</span>
+              <span className="text-gray-600 text-xs">{service}</span>
             </label>
           ))}
         </div>
@@ -160,7 +160,7 @@ export default function ContactForm() {
         <label className={labelClass}>I am looking for a job *</label>
         <select
           {...register("lookingForJob")}
-          className={cn(inputClass, "bg-[#1a1a1a] cursor-pointer")}
+          className={cn(inputClass, "cursor-pointer")}
         >
           <option value="Please Select">Please Select</option>
           <option value="Yes">Yes</option>

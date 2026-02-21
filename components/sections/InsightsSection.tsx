@@ -5,7 +5,7 @@ import { insights } from "@/lib/data/insights"
 
 export default function InsightsSection() {
   return (
-    <section className="bg-[#0a0a0a] py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Left column */}
@@ -13,10 +13,10 @@ export default function InsightsSection() {
             <p className="text-[var(--color-teal)] text-xs font-bold uppercase tracking-widest mb-3">
               Featured Insights
             </p>
-            <h2 className="text-3xl font-black text-white mb-4 leading-tight">
+            <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">
               Stories of our transformations across Services and Industries
             </h2>
-            <p className="text-white/60 text-sm mb-8">From Concept to Completion</p>
+            <p className="text-gray-500 text-sm mb-8">From Concept to Completion</p>
             <Link
               href="/learning"
               className="flex items-center gap-2 text-[var(--color-teal)] font-semibold text-sm hover:gap-3 transition-all"

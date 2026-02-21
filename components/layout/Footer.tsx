@@ -51,16 +51,16 @@ const offices = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10">
+    <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
           {/* Company */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-5">Company</h4>
+            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Company</h4>
             <ul className="flex flex-col gap-3">
               {companyLinks.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-white/50 text-sm hover:text-[var(--color-teal)] transition-colors">
+                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -70,11 +70,11 @@ export default function Footer() {
 
           {/* Industries */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-5">Industries We Serve</h4>
+            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Industries We Serve</h4>
             <ul className="flex flex-col gap-3">
               {industryLinks.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-white/50 text-sm hover:text-[var(--color-teal)] transition-colors">
+                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -84,11 +84,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-5">Services & Solutions</h4>
+            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Services & Solutions</h4>
             <ul className="flex flex-col gap-3">
               {serviceLinks.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-white/50 text-sm hover:text-[var(--color-teal)] transition-colors">
+                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -98,11 +98,11 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-5">Resources</h4>
+            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Resources</h4>
             <ul className="flex flex-col gap-3">
               {resourceLinks.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-white/50 text-sm hover:text-[var(--color-teal)] transition-colors">
+                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -112,15 +112,15 @@ export default function Footer() {
 
           {/* Offices */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-5">Our Offices</h4>
+            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Our Offices</h4>
             <div className="flex flex-col gap-5">
               {offices.map((office) => (
                 <div key={office.country}>
-                  <p className="text-white text-xs font-bold">
+                  <p className="text-gray-100 text-xs font-bold">
                     {office.country}{" "}
-                    <span className="text-white/40 font-normal">({office.type})</span>
+                    <span className="text-gray-500 font-normal">({office.type})</span>
                   </p>
-                  <p className="text-white/50 text-xs mt-1 leading-relaxed">{office.address}</p>
+                  <p className="text-gray-400 text-xs mt-1 leading-relaxed">{office.address}</p>
                 </div>
               ))}
             </div>
@@ -129,15 +129,15 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-gray-800">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 flex-wrap">
               <Link href="/" className="text-[var(--color-teal)] font-black text-xl">D</Link>
-              <Link href="/terms-conditions" className="text-white/40 text-xs hover:text-white transition-colors">
+              <Link href="/terms-conditions" className="text-gray-500 text-xs hover:text-white transition-colors">
                 Terms and Conditions
               </Link>
-              <Link href="/privacy-policy" className="text-white/40 text-xs hover:text-white transition-colors">
+              <Link href="/privacy-policy" className="text-gray-500 text-xs hover:text-white transition-colors">
                 Privacy Policy
               </Link>
             </div>
@@ -150,16 +150,16 @@ export default function Footer() {
             </Link>
 
             <div className="flex items-center gap-4">
-              <Link href="https://www.facebook.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-teal)] transition-colors">
+              <Link href="https://www.facebook.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Facebook size={18} />
               </Link>
-              <Link href="https://www.linkedin.com/company/developers-inc" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-teal)] transition-colors">
+              <Link href="https://www.linkedin.com/company/developers-inc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Linkedin size={18} />
               </Link>
-              <Link href="https://www.instagram.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-teal)] transition-colors">
+              <Link href="https://www.instagram.com/devsinc.official/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Instagram size={18} />
               </Link>
-              <Link href="https://x.com/devsinc" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-teal)] transition-colors">
+              <Link href="https://x.com/devsinc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
                 <Twitter size={18} />
               </Link>
             </div>

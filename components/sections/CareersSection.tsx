@@ -3,11 +3,11 @@ import Link from "next/link"
 
 export default function CareersSection() {
   return (
-    <section className="bg-[#111] py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section className="bg-white py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
-          {/* Left: office photo placeholder */}
-          <div className="lg:w-1/2 relative h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-[#1a1a1a] border border-[#2a2a2a]">
+          {/* Left: office photo */}
+          <div className="lg:w-1/2 relative h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
             <Image
               src="https://www.devsinc.com/wp-content/uploads/2023/10/Human-First-Image.webp"
               alt="Devsinc team"
@@ -22,10 +22,10 @@ export default function CareersSection() {
             <p className="text-[var(--color-teal)] text-xs font-bold uppercase tracking-widest mb-4">
               careers
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
               Human-first is our foundation.
             </h2>
-            <p className="text-white/60 text-base mb-10 leading-relaxed">
+            <p className="text-gray-500 text-base mb-10 leading-relaxed">
               Join a culture that celebrates excellence and diversity, Globally!
             </p>
             <Link

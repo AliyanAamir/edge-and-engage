@@ -9,12 +9,12 @@
 :root {
   --color-teal: #0ebab1;
   --color-teal-dark: #0ca39b;
-  --color-bg: #000000;
-  --color-surface: #111111;
-  --color-surface-2: #1a1a1a;
-  --color-text: #ffffff;
-  --color-muted: #9ca3af;
-  --color-border: #2a2a2a;
+  --color-bg: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-2: #f1f3f5;
+  --color-text: #111111;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
 }
 
 html {
@@ -32,7 +32,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #111;
+  background: #f1f3f5;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-teal);

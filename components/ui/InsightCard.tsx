@@ -5,20 +5,20 @@ import { cn } from "@/lib/utils"
 
 export default function InsightCard({ insight }: { insight: Insight }) {
   return (
-    <div className="group rounded-xl bg-[#111] border border-[#2a2a2a] hover:border-[var(--color-teal)]/50 transition-all duration-300 p-5">
+    <div className="group rounded-xl bg-white border border-gray-200 hover:border-[var(--color-teal)] hover:shadow-md transition-all duration-300 p-5">
       <div className="mb-3">
         <span
           className={cn(
             "text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full",
             insight.type === "Case Study"
-              ? "bg-[var(--color-teal)]/20 text-[var(--color-teal)]"
-              : "bg-white/10 text-white/70"
+              ? "bg-[var(--color-teal)]/10 text-[var(--color-teal)]"
+              : "bg-gray-100 text-gray-500"
           )}
         >
           {insight.type}
         </span>
       </div>
-      <h3 className="text-white font-bold text-sm leading-snug mb-4 line-clamp-3">
+      <h3 className="text-gray-900 font-bold text-sm leading-snug mb-4 line-clamp-3">
         {insight.title}
       </h3>
       <Link

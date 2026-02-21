@@ -19,12 +19,12 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-200 shadow-sm">
         <div className="flex items-center justify-between px-6 py-3 max-w-[1440px] mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <span className="text-[var(--color-teal)] font-black text-2xl leading-none">D</span>
-            <span className="text-white font-bold text-lg tracking-wide hidden sm:block">
+            <span className="text-gray-900 font-bold text-lg tracking-wide hidden sm:block">
               devsinc
             </span>
           </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors uppercase tracking-wide"
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors uppercase tracking-wide"
               >
                 {item.label}
                 <ChevronDown size={14} />
@@ -58,7 +58,7 @@ export default function Navbar() {
             >
               Let&apos;s Talk Business
             </button>
-            <button className="flex items-center gap-1 text-sm text-white/80 hover:text-white ml-2 transition-colors">
+            <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 ml-2 transition-colors">
               Global
               <ChevronDown size={14} />
             </button>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden text-white p-2"
+            className="lg:hidden text-gray-700 p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -76,11 +76,11 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="lg:hidden bg-black border-t border-white/10 px-6 py-4 flex flex-col gap-3">
+          <div className="lg:hidden bg-white border-t border-gray-200 px-6 py-4 flex flex-col gap-3">
             {navItems.map((item) => (
               <button
                 key={item.label}
-                className="text-left text-white/80 hover:text-white py-2 text-sm font-medium uppercase tracking-wide border-b border-white/10 transition-colors"
+                className="text-left text-gray-600 hover:text-gray-900 py-2 text-sm font-medium uppercase tracking-wide border-b border-gray-100 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}

@@ -9,7 +9,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="bg-black py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-gray-50 py-20 px-6 md:px-12 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
           {/* Left */}
@@ -17,13 +17,13 @@ export default function StatsSection() {
             <p className="text-[var(--color-teal)] text-xs font-bold uppercase tracking-widest mb-3">
               Pioneering Trust and Innovation
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
               Devsinc&apos;s Achievements
             </h2>
-            <p className="text-white/60 text-base mb-4 leading-relaxed">
+            <p className="text-gray-500 text-base mb-4 leading-relaxed">
               We take pride in empowering businesses worldwide with innovative solutions.
             </p>
-            <p className="text-white/60 text-base mb-10 leading-relaxed">
+            <p className="text-gray-500 text-base mb-10 leading-relaxed">
               Devsinc brings an unwavering commitment to excellence, backed by a global presence.
             </p>
             <Link
@@ -41,7 +41,7 @@ export default function StatsSection() {
                 <p className="text-4xl md:text-5xl font-black text-[var(--color-teal)] mb-2">
                   {stat.number}
                 </p>
-                <p className="text-white font-semibold text-sm">{stat.label}</p>
+                <p className="text-gray-700 font-semibold text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
