@@ -8,7 +8,17 @@
       "Bash(git:*)",
       "Bash(node:*)",
       "Bash(cd \"D:/Aliyan/Project/edge-n-engage\" && npx tsc --noEmit 2>&1)",
-      "Bash(cd /d/Aliyan/Project/edge-n-engage && npm run build 2>&1)"
+      "Bash(cd /d/Aliyan/Project/edge-n-engage && npm run build 2>&1)",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "WebFetch(domain:www.devsinc.com)",
+      "Bash(cat:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cd \"D:/Aliyan/Project/edge-n-engage\" && npm run build 2>&1)",
+      "Bash(vercel:*)",
+      "Bash(npm install:*)",
+      "mcp__claude_ai_Vercel__list_deployments",
+      "mcp__claude_ai_Vercel__get_project",
+      "Bash(curl:*)"
     ]
   }
 }

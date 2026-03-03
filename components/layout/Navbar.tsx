@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 import SideDrawer from "./SideDrawer"
-import MegaMenu from "@/components/ui/MegaMenu"
 import { navItems } from "@/lib/data/navigation"
 import { site } from "@/lib/data/site"
 
@@ -14,7 +13,6 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
 
-  // Close mega menu on outside click or Escape
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -36,11 +34,8 @@ export default function Navbar() {
     setActiveMenu((prev) => (prev === label ? null : label))
   }
 
-  const activeItem = navItems.find((item) => item.label === activeMenu)
-
   return (
     <>
-      {/* Overlay backdrop when mega menu is open */}
       {activeMenu && (
         <div
           className="fixed inset-0 z-30 bg-black/20"
@@ -51,7 +46,6 @@ export default function Navbar() {
       <div ref={navRef} className="fixed top-0 left-0 right-0 z-40">
         <header className="bg-white border-b border-gray-200 shadow-sm">
           <div className="flex items-center justify-between px-6 py-3 max-w-[1440px] mx-auto">
-            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-2 flex-shrink-0"
@@ -65,7 +59,6 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
@@ -90,7 +83,6 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <button
                 onClick={() => { setDrawerOpen(true); setActiveMenu(null) }}
@@ -104,7 +96,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile hamburger */}
             <button
               className="lg:hidden text-gray-700 p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -114,7 +105,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
           {mobileOpen && (
             <div className="lg:hidden bg-white border-t border-gray-200 px-6 py-4 flex flex-col gap-3">
               {navItems.map((item) => (
@@ -140,17 +130,8 @@ export default function Navbar() {
             </div>
           )}
         </header>
-
-        {/* Mega Menu panel */}
-        {activeMenu && activeItem?.megaMenu && (
-          <MegaMenu
-            data={activeItem.megaMenu}
-            onClose={() => setActiveMenu(null)}
-          />
-        )}
       </div>
 
-      {/* Fixed vertical "Let's Talk Business" tab on right edge */}
       <button
         onClick={() => setDrawerOpen(true)}
         className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-teal)] text-black text-xs font-bold px-2 py-4 hover:bg-[var(--color-teal-dark)] transition-all hidden lg:flex items-center justify-center"
