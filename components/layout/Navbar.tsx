@@ -1,147 +1,132 @@
 "use client"
-
-import { useState, useEffect, useRef } from "react"
-import Link from "next/link"
-import { ChevronDown, Menu, X } from "lucide-react"
-import SideDrawer from "./SideDrawer"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/Button"
 import { navItems } from "@/lib/data/navigation"
 import { site } from "@/lib/data/site"
 
-export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [drawerOpen, setDrawerOpen] = useState(false)
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const navRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setActiveMenu(null)
-      }
-    }
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setActiveMenu(null)
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("keydown", handleKeyDown)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.removeEventListener("keydown", handleKeyDown)
-    }
+    const handler = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handler)
+    return () => window.removeEventListener("scroll", handler)
   }, [])
 
-  function toggleMenu(label: string) {
-    setActiveMenu((prev) => (prev === label ? null : label))
-  }
-
   return (
-    <>
-      {activeMenu && (
-        <div
-          className="fixed inset-0 z-30 bg-black/20"
-          onClick={() => setActiveMenu(null)}
-        />
-      )}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md bg-bg/80 border-b border-border" : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="flex items-center gap-2">
+          <span className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-display font-bold text-sm">
+            E
+          </span>
+          <span className="font-display font-bold text-white text-sm hidden sm:block">
+            {site.name}
+          </span>
+        </a>
 
-      <div ref={navRef} className="fixed top-0 left-0 right-0 z-40">
-        <header className="bg-white border-b border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between px-6 py-3 max-w-[1440px] mx-auto">
-            <Link
-              href="/"
-              className="flex items-center gap-2 flex-shrink-0"
-              onClick={() => setActiveMenu(null)}
+        {/* Desktop Nav */}
+        <ul className="hidden lg:flex items-center gap-8">
+          {navItems.map((item) => (
+            <li
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => setActiveMenu(item.label)}
+              onMouseLeave={() => setActiveMenu(null)}
             >
-              <span className="text-[var(--color-teal)] font-black text-2xl leading-none">
-                {site.logoLetter}
-              </span>
-              <span className="text-gray-900 font-bold text-lg tracking-wide hidden sm:block">
-                {site.name}
-              </span>
-            </Link>
+              <button className="flex items-center gap-1 text-sm text-muted hover:text-white transition-colors">
+                {item.label}
+                {item.megaMenu && <ChevronDown className="w-3 h-3" />}
+              </button>
+              <AnimatePresence>
+                {activeMenu === item.label && item.megaMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max max-w-2xl bg-surface-2 border border-border rounded-2xl p-6 shadow-2xl"
+                  >
+                    <div className="flex gap-8">
+                      {item.megaMenu.columns.map((col, ci) => (
+                        <div key={ci} className="flex flex-col gap-4">
+                          {col.groups.map((group, gi) => (
+                            <div key={gi}>
+                              {group.heading && (
+                                <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-2">
+                                  {group.heading}
+                                </p>
+                              )}
+                              {group.links.map((link) => (
+                                <a
+                                  key={link.href}
+                                  href={link.href}
+                                  className="block text-sm text-muted hover:text-white py-1 transition-colors"
+                                >
+                                  {link.label}
+                                </a>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+          ))}
+        </ul>
 
-            <nav className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => item.megaMenu ? toggleMenu(item.label) : undefined}
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors uppercase tracking-wide ${
-                    activeMenu === item.label
-                      ? "text-[var(--color-teal)]"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  {item.label}
-                  {item.megaMenu && (
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${
-                        activeMenu === item.label ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
-                </button>
-              ))}
-            </nav>
+        {/* CTA buttons */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Button variant="outline" size="sm" href={site.careersUrl}>
+            Careers
+          </Button>
+          <Button variant="primary" size="sm" href="/contact">
+            Let's Talk
+          </Button>
+        </div>
 
-            <div className="hidden lg:flex items-center gap-3">
-              <button
-                onClick={() => { setDrawerOpen(true); setActiveMenu(null) }}
-                className="px-4 py-2 text-sm font-semibold text-black bg-[var(--color-teal)] rounded-full hover:bg-[var(--color-teal-dark)] transition-all"
+        {/* Mobile toggle */}
+        <button className="lg:hidden text-white" onClick={() => setOpen(!open)}>
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-surface border-b border-border px-6 py-4 flex flex-col gap-4"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-sm text-muted hover:text-white transition-colors"
               >
-                Let&apos;s Talk Business
-              </button>
-              <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 ml-2 transition-colors">
-                Global
-                <ChevronDown size={14} />
-              </button>
-            </div>
-
-            <button
-              className="lg:hidden text-gray-700 p-2"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {mobileOpen && (
-            <div className="lg:hidden bg-white border-t border-gray-200 px-6 py-4 flex flex-col gap-3">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  className="text-left text-gray-600 hover:text-gray-900 py-2 text-sm font-medium uppercase tracking-wide border-b border-gray-100 transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <div className="flex flex-col gap-3 pt-3">
-                <button
-                  onClick={() => {
-                    setDrawerOpen(true)
-                    setMobileOpen(false)
-                  }}
-                  className="px-4 py-2 text-sm font-semibold text-black bg-[var(--color-teal)] rounded-full"
-                >
-                  Let&apos;s Talk Business
-                </button>
-              </div>
-            </div>
-          )}
-        </header>
-      </div>
-
-      <button
-        onClick={() => setDrawerOpen(true)}
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-teal)] text-black text-xs font-bold px-2 py-4 hover:bg-[var(--color-teal-dark)] transition-all hidden lg:flex items-center justify-center"
-        style={{ writingMode: "vertical-rl", transform: "translateY(-50%) rotate(180deg)" }}
-        aria-label="Open contact form"
-      >
-        Let&apos;s Talk Business
-      </button>
-
-      <SideDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
-    </>
+                {item.label}
+              </a>
+            ))}
+            <Button variant="primary" size="sm" href="/contact" className="mt-2">
+              Let's Talk
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   )
 }
