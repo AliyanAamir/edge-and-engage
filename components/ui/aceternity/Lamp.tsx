@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface LampProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
 }
 
