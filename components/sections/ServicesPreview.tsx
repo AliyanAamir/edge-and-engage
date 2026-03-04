@@ -40,7 +40,7 @@ export function ServicesPreview() {
                     <Icon className="w-5 h-5 text-violet-400" />
                   </div>
                   <p className="text-white font-medium text-sm mb-3 leading-snug flex-1">{s.name}</p>
-                  <p className="text-xs text-muted mb-3 line-clamp-2">{s.description}</p>
+                  <p className="text-xs text-muted mb-3 line-clamp-2">{s.desc}</p>
                   <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" />
                 </motion.a>
               </WobbleCard>
