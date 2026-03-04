@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/Button"
@@ -25,14 +26,14 @@ export function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <span className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-display font-bold text-sm">
             E
           </span>
           <span className="font-display font-bold text-white text-sm hidden sm:block">
             {site.name}
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <ul className="hidden lg:flex items-center gap-8">
@@ -93,7 +94,7 @@ export function Navbar() {
             Careers
           </Button>
           <Button variant="primary" size="sm" href="/contact">
-            Let's Talk
+            Let&apos;s Talk
           </Button>
         </div>
 
@@ -122,7 +123,7 @@ export function Navbar() {
               </a>
             ))}
             <Button variant="primary" size="sm" href="/contact" className="mt-2">
-              Let's Talk
+              Let&apos;s Talk
             </Button>
           </motion.div>
         )}

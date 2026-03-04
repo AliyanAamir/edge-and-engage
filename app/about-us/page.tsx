@@ -1,7 +1,6 @@
 import { PageTransition } from "@/components/ui/PageTransition"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber"
-import { Button } from "@/components/ui/Button"
 import { leaders } from "@/lib/data/leadership"
 import { offices } from "@/lib/data/navigation"
 import { Linkedin } from "lucide-react"

@@ -9,14 +9,14 @@ export function ContactCTA() {
           Ready to start?
         </p>
         <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-6">
-          Let's build something
+          Let&apos;s build something
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-violet-600">
             remarkable.
           </span>
         </h2>
         <p className="text-muted text-lg mb-10 max-w-xl mx-auto">
-          Tell us about your project and we'll get back within 24 hours.
+          Tell us about your project and we&apos;ll get back within 24 hours.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button href="/contact" size="lg">

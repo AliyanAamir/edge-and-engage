@@ -39,7 +39,7 @@ export function IndustriesSection() {
         </motion.div>
         <div className="mt-12 text-center">
           <Button href="/contact" size="lg">
-            Let's Talk Business
+            Let&apos;s Talk Business
           </Button>
         </div>
       </div>
