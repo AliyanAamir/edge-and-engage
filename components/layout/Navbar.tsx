@@ -1,166 +1,156 @@
 "use client"
-
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronDown, Menu, X } from "lucide-react"
-import SideDrawer from "./SideDrawer"
-import MegaMenu from "@/components/ui/MegaMenu"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/Button"
 import { navItems } from "@/lib/data/navigation"
 import { site } from "@/lib/data/site"
 
-export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [drawerOpen, setDrawerOpen] = useState(false)
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const navRef = useRef<HTMLDivElement>(null)
 
-  // Close mega menu on outside click or Escape
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setActiveMenu(null)
-      }
-    }
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setActiveMenu(null)
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("keydown", handleKeyDown)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.removeEventListener("keydown", handleKeyDown)
-    }
+    const handler = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handler)
+    return () => window.removeEventListener("scroll", handler)
   }, [])
 
-  function toggleMenu(label: string) {
-    setActiveMenu((prev) => (prev === label ? null : label))
-  }
-
-  const activeItem = navItems.find((item) => item.label === activeMenu)
+  const activeItem = navItems.find((i) => i.label === activeMenu)
 
   return (
-    <>
-      {/* Overlay backdrop when mega menu is open */}
-      {activeMenu && (
-        <div
-          className="fixed inset-0 z-30 bg-black/20"
-          onClick={() => setActiveMenu(null)}
-        />
-      )}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md bg-bg/90 border-b border-border" : "bg-transparent"
+      }`}
+      onMouseLeave={() => setActiveMenu(null)}
+    >
+      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <span className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-display font-bold text-sm">
+            E
+          </span>
+          <span className="font-display font-bold text-white text-sm hidden sm:block">
+            {site.name}
+          </span>
+        </Link>
 
-      <div ref={navRef} className="fixed top-0 left-0 right-0 z-40">
-        <header className="bg-white border-b border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between px-6 py-3 max-w-[1440px] mx-auto">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center gap-2 flex-shrink-0"
-              onClick={() => setActiveMenu(null)}
+        {/* Desktop Nav */}
+        <ul className="hidden lg:flex items-center gap-1">
+          {navItems.map((item) => (
+            <li
+              key={item.label}
+              onMouseEnter={() => setActiveMenu(item.label)}
             >
-              <span className="text-[var(--color-teal)] font-black text-2xl leading-none">
-                {site.logoLetter}
-              </span>
-              <span className="text-gray-900 font-bold text-lg tracking-wide hidden sm:block">
-                {site.name}
-              </span>
-            </Link>
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => item.megaMenu ? toggleMenu(item.label) : undefined}
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors uppercase tracking-wide ${
-                    activeMenu === item.label
-                      ? "text-[var(--color-teal)]"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  {item.label}
-                  {item.megaMenu && (
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${
-                        activeMenu === item.label ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
-                </button>
-              ))}
-            </nav>
-
-            {/* Right CTAs */}
-            <div className="hidden lg:flex items-center gap-3">
-              <button
-                onClick={() => { setDrawerOpen(true); setActiveMenu(null) }}
-                className="px-4 py-2 text-sm font-semibold text-black bg-[var(--color-teal)] rounded-full hover:bg-[var(--color-teal-dark)] transition-all"
-              >
-                Let&apos;s Talk Business
+              <button className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
+                {item.label}
+                {item.megaMenu && (
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      activeMenu === item.label ? "rotate-180 text-violet-400" : ""
+                    }`}
+                  />
+                )}
               </button>
-              <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 ml-2 transition-colors">
-                Global
-                <ChevronDown size={14} />
-              </button>
-            </div>
+            </li>
+          ))}
+        </ul>
 
-            {/* Mobile hamburger */}
-            <button
-              className="lg:hidden text-gray-700 p-2"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+        {/* CTA buttons */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Button variant="outline" size="sm" href={site.careersUrl}>
+            Careers
+          </Button>
+          <Button variant="primary" size="sm" href="/contact">
+            Let&apos;s Talk
+          </Button>
+        </div>
 
-          {/* Mobile Menu */}
-          {mobileOpen && (
-            <div className="lg:hidden bg-white border-t border-gray-200 px-6 py-4 flex flex-col gap-3">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  className="text-left text-gray-600 hover:text-gray-900 py-2 text-sm font-medium uppercase tracking-wide border-b border-gray-100 transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <div className="flex flex-col gap-3 pt-3">
-                <button
-                  onClick={() => {
-                    setDrawerOpen(true)
-                    setMobileOpen(false)
-                  }}
-                  className="px-4 py-2 text-sm font-semibold text-black bg-[var(--color-teal)] rounded-full"
-                >
-                  Let&apos;s Talk Business
-                </button>
+        {/* Mobile toggle */}
+        <button className="lg:hidden text-white p-1" onClick={() => setOpen(!open)}>
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </nav>
+
+      {/* Full-width Mega Menu Dropdown */}
+      <AnimatePresence>
+        {activeItem?.megaMenu && (
+          <motion.div
+            key={activeMenu}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="border-b border-border bg-surface-2 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+          >
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              <div className="flex gap-10">
+                {activeItem.megaMenu.columns.map((col, ci) => (
+                  <div key={ci} className="flex flex-col gap-6 min-w-40">
+                    {col.groups.map((group, gi) => (
+                      <div key={gi}>
+                        {group.heading && (
+                          <p className="text-[10px] font-bold text-violet-400 uppercase tracking-[0.15em] mb-2.5 pb-2 border-b border-white/5">
+                            {group.heading}
+                          </p>
+                        )}
+                        <div className="flex flex-col">
+                          {group.links.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 px-2 py-1.5 rounded-md transition-all duration-150 group"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-violet-600/50 group-hover:bg-violet-400 transition-colors shrink-0" />
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
-          )}
-        </header>
-
-        {/* Mega Menu panel */}
-        {activeMenu && activeItem?.megaMenu && (
-          <MegaMenu
-            data={activeItem.megaMenu}
-            onClose={() => setActiveMenu(null)}
-          />
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
 
-      {/* Fixed vertical "Let's Talk Business" tab on right edge */}
-      <button
-        onClick={() => setDrawerOpen(true)}
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[var(--color-teal)] text-black text-xs font-bold px-2 py-4 hover:bg-[var(--color-teal-dark)] transition-all hidden lg:flex items-center justify-center"
-        style={{ writingMode: "vertical-rl", transform: "translateY(-50%) rotate(180deg)" }}
-        aria-label="Open contact form"
-      >
-        Let&apos;s Talk Business
-      </button>
-
-      <SideDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
-    </>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-surface border-b border-border overflow-hidden"
+          >
+            <div className="px-6 py-4 flex flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition-all"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="mt-3 pt-3 border-t border-border flex gap-2">
+                <Button variant="outline" size="sm" href={site.careersUrl} className="flex-1 justify-center">
+                  Careers
+                </Button>
+                <Button variant="primary" size="sm" href="/contact" className="flex-1 justify-center">
+                  Let&apos;s Talk
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   )
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import { X } from "lucide-react"
-import ContactForm from "@/components/ui/ContactForm"
 
 interface SideDrawerProps {
   open: boolean
@@ -11,7 +10,6 @@ interface SideDrawerProps {
 export default function SideDrawer({ open, onClose }: SideDrawerProps) {
   return (
     <>
-      {/* Backdrop */}
       {open && (
         <div
           className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
@@ -19,7 +17,6 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
         />
       )}
 
-      {/* Drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 overflow-y-auto transition-transform duration-300 shadow-2xl ${
           open ? "translate-x-0" : "translate-x-full"
@@ -35,9 +32,7 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
             <X size={24} />
           </button>
         </div>
-        <div className="p-6">
-          <ContactForm />
-        </div>
+        <div className="p-6" />
       </div>
     </>
   )

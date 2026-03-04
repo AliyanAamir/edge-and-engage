@@ -1,17 +1,39 @@
+export type InsightType = "Case Study" | "Blog"
 export interface Insight {
   id: string
-  type: "Case Study" | "Blog"
   title: string
+  type: InsightType
+  excerpt: string
   href: string
+  date: string
+  readTime: string
 }
-
 export const insights: Insight[] = [
-  { id: "recurate", type: "Case Study", title: "US Fashion Resale Platform Scales to 100K Monthly Transactions", href: "/case-studies/recurate" },
-  { id: "cloud-small-biz", type: "Blog", title: "How Cloud Computing Can Transform Small Businesses", href: "/articles/how-cloud-computing-can-transform-small-businesses" },
-  { id: "custom-web-app", type: "Blog", title: "Custom Web Application Development: Everything You Need to Know", href: "/articles/custom-web-app-development-what-you-need-to-know" },
-  { id: "mobile-design", type: "Blog", title: "Trends of Mobile Design: What's Next for Your Business?", href: "/articles/trends-of-mobile-design-whats-next-for-your-business" },
-  { id: "gen-ai-ops", type: "Blog", title: "How Generative AI is Transforming Business Operations", href: "/articles/how-generative-ai-is-transforming-business-operations" },
-  { id: "xquic", type: "Case Study", title: "Hospitality AI Platform Reconciles $300M+ in OTA Commissions Automatically", href: "/case-studies/empowering-xquic-for-automated-financial-accuracy" },
-  { id: "interwood", type: "Case Study", title: "Pakistan Furniture Leader's Shopify Migration Drives 55% Growth", href: "/case-studies/interwood" },
-  { id: "fintech-ai", type: "Case Study", title: "US Fintech's AI Financial Modeling Secures $2M+ Funding", href: "/case-studies/financial-automation" },
+  {
+    id: "1",
+    title: "How Generative AI Cut Development Time by 40%",
+    type: "Case Study",
+    excerpt: "A fintech client reduced sprint cycles dramatically with our AI-assisted engineering workflow.",
+    href: "/case-studies/genai-fintech",
+    date: "2026-02-10",
+    readTime: "5 min",
+  },
+  {
+    id: "2",
+    title: "Building Scalable Cloud Architecture on Azure",
+    type: "Blog",
+    excerpt: "Key patterns for multi-region failover and cost-optimised Azure deployments.",
+    href: "/articles/azure-cloud-architecture",
+    date: "2026-01-28",
+    readTime: "7 min",
+  },
+  {
+    id: "3",
+    title: "Mobile-First E-commerce: 3x Conversion Uplift",
+    type: "Case Study",
+    excerpt: "How a React Native rebuild transformed checkout conversion for a UAE retailer.",
+    href: "/case-studies/ecommerce-mobile",
+    date: "2026-01-15",
+    readTime: "4 min",
+  },
 ]

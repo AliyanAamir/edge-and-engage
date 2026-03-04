@@ -1,33 +1,24 @@
-import Navbar from "@/components/layout/Navbar"
-import Footer from "@/components/layout/Footer"
-import HeroSection from "@/components/sections/HeroSection"
-import LogoStripSection from "@/components/sections/LogoStripSection"
-import ServicesSection from "@/components/sections/ServicesSection"
-import IndustriesSection from "@/components/sections/IndustriesSection"
-import AwardsSection from "@/components/sections/AwardsSection"
-import PartnershipsSection from "@/components/sections/PartnershipsSection"
-import InsightsSection from "@/components/sections/InsightsSection"
-import StatsSection from "@/components/sections/StatsSection"
-import LeadershipSection from "@/components/sections/LeadershipSection"
-import ContactFormSection from "@/components/sections/ContactFormSection"
+import { PageTransition } from "@/components/ui/PageTransition"
+import { HeroSection } from "@/components/sections/HeroSection"
+import { ServicesPreview } from "@/components/sections/ServicesPreview"
+import { StatsBand } from "@/components/sections/StatsBand"
+import { IndustriesSection } from "@/components/sections/IndustriesSection"
+import { InsightsPreview } from "@/components/sections/InsightsPreview"
+import { LeadershipCarousel } from "@/components/sections/LeadershipCarousel"
+import { ContactCTA } from "@/components/sections/ContactCTA"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <Navbar />
+    <PageTransition>
       <main>
         <HeroSection />
-        <LogoStripSection />
-        <ServicesSection />
+        <ServicesPreview />
+        <StatsBand />
         <IndustriesSection />
-        <AwardsSection />
-        <PartnershipsSection />
-        <InsightsSection />
-        <StatsSection />
-        <LeadershipSection />
-        <ContactFormSection />
+        <InsightsPreview />
+        <LeadershipCarousel />
+        <ContactCTA />
       </main>
-      <Footer />
-    </>
+    </PageTransition>
   )
 }

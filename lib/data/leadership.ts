@@ -1,19 +1,16 @@
 export interface Leader {
-  id: string
   name: string
   title: string
   linkedin: string
+  initials: string
 }
-
 export const leaders: Leader[] = [
-  { id: "leader-1", name: "Alex Johnson", title: "Founder & CEO", linkedin: "#" },
-  { id: "leader-2", name: "Jordan Williams", title: "Chief Finance Officer", linkedin: "#" },
-  { id: "leader-3", name: "Morgan Davis", title: "Chief of Staff", linkedin: "#" },
-  { id: "leader-4", name: "Taylor Brown", title: "Chief Delivery Officer", linkedin: "#" },
-  { id: "leader-5", name: "Casey Martinez", title: "Chief Business Officer", linkedin: "#" },
-  { id: "leader-6", name: "Riley Thompson", title: "Head of Global Marketing", linkedin: "#" },
-  { id: "leader-7", name: "Drew Anderson", title: "Sr. VP Sales Engineering", linkedin: "#" },
-  { id: "leader-8", name: "Quinn Wilson", title: "Sr. VP E-Commerce & Digital Retail", linkedin: "#" },
-  { id: "leader-9", name: "Avery Garcia", title: "VP Human Assets", linkedin: "#" },
-  { id: "leader-10", name: "Parker Lee", title: "VP Professional Services", linkedin: "#" },
+  { name: "Usman Asif", title: "Founder & CEO", linkedin: "https://linkedin.com", initials: "UA" },
+  { name: "Qamar Abbas Sipra", title: "CFO", linkedin: "https://linkedin.com", initials: "QA" },
+  { name: "Maria Sadaf", title: "Chief of Staff", linkedin: "https://linkedin.com", initials: "MS" },
+  { name: "Badar Shafiq", title: "Chief Delivery Officer", linkedin: "https://linkedin.com", initials: "BS" },
+  { name: "Atta Ur Rahman", title: "CBO", linkedin: "https://linkedin.com", initials: "AR" },
+  { name: "Moiz Saleem Varind", title: "Head of Global Marketing", linkedin: "https://linkedin.com", initials: "MV" },
+  { name: "Rehmat Qadir", title: "Sr. VP Sales", linkedin: "https://linkedin.com", initials: "RQ" },
+  { name: "Ahmed Waqas", title: "VP Human Assets", linkedin: "https://linkedin.com", initials: "AW" },
 ]

@@ -1,41 +1,65 @@
-import Link from "next/link"
+"use client"
+import { motion } from "framer-motion"
+import { Plane, Radio, Zap, ShoppingBag, Heart, Landmark, Store, Rocket, CreditCard, Gamepad2 } from "lucide-react"
+import { SectionHeading } from "@/components/ui/SectionHeading"
 import { industries } from "@/lib/data/industries"
+import { stagger, fadeUp } from "@/lib/animations"
+import { Button } from "@/components/ui/Button"
 
-export default function IndustriesSection() {
+const iconMap: Record<string, React.ElementType> = {
+  travel: Plane,
+  telecom: Radio,
+  energy: Zap,
+  ecommerce: ShoppingBag,
+  health: Heart,
+  public: Landmark,
+  retail: Store,
+  startups: Rocket,
+  fintech: CreditCard,
+  gaming: Gamepad2,
+}
+
+export function IndustriesSection() {
   return (
-    <section className="bg-gray-50 py-20 px-6 md:px-12 lg:px-20">
-      <div className="max-w-[1440px] mx-auto">
-        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-12 text-center">
-          Discover our Impact Across Industries
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {industries.map((industry) => (
-            <Link
-              key={industry.id}
-              href={industry.href}
-              className="group flex flex-col items-center gap-4 p-6 bg-white border border-gray-200 rounded-xl hover:border-[var(--color-teal)] hover:shadow-md transition-all duration-300 text-center"
-            >
-              <div className="h-12 w-12 rounded-full bg-[var(--color-teal)]/10 flex items-center justify-center">
-                <span className="text-[var(--color-teal)] font-black text-lg">
-                  {industry.name.charAt(0)}
-                </span>
-              </div>
-              <h3 className="text-gray-800 text-sm font-semibold group-hover:text-[var(--color-teal)] transition-colors leading-snug">
-                {industry.name}
-              </h3>
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA Band */}
-        <div className="mt-16 flex justify-center">
-          <Link
-            href="/contact"
-            className="px-10 py-4 bg-[var(--color-teal)] text-black font-bold text-base rounded-full hover:bg-[var(--color-teal-dark)] transition-all"
-          >
+    <section className="py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionHeading
+          label="Who We Help"
+          title="Impact Across Industries"
+          align="center"
+          subtitle="From startups to enterprises, we deliver across every major vertical."
+          className="mb-14"
+        />
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        >
+          {industries.map((ind) => {
+            const Icon = iconMap[ind.id] ?? Landmark
+            return (
+              <motion.a
+                key={ind.id}
+                href={ind.href}
+                variants={fadeUp}
+                className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-border hover:border-violet-600/60 hover:bg-violet-600/5 transition-all text-center"
+              >
+                <div className="w-12 h-12 rounded-xl bg-violet-600/15 flex items-center justify-center group-hover:bg-violet-600/25 transition-colors">
+                  <Icon className="w-5 h-5 text-violet-400" />
+                </div>
+                <p className="text-zinc-400 group-hover:text-white text-xs font-medium transition-colors leading-snug">
+                  {ind.label}
+                </p>
+              </motion.a>
+            )
+          })}
+        </motion.div>
+        <div className="mt-12 text-center">
+          <Button href="/contact" size="lg">
             Let&apos;s Talk Business
-          </Link>
+          </Button>
         </div>
       </div>
     </section>
