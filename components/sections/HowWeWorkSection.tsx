@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Timeline } from '@/components/ui/aceternity/Timeline';
-import { cn } from '@/lib/utils';
 
 const steps = [
   {

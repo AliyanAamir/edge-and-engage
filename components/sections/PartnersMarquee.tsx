@@ -20,7 +20,7 @@ export function PartnersMarquee() {
                 key={index}
                 className="flex items-center justify-center min-w-fit px-8 py-4 bg-surface-2 border border-border rounded-lg hover:border-violet hover:bg-surface transition-all duration-300"
               >
-                <span className="text-text font-semibold text-sm">{partner.name}</span>
+                <span className="text-text font-semibold text-sm">{partner}</span>
               </div>
             ))}
           </div>
