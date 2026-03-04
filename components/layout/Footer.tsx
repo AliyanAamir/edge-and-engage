@@ -1,5 +1,4 @@
-import Link from "next/link"
-import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react"
+import { site } from "@/lib/data/site"
 import {
   footerCompanyLinks,
   footerIndustryLinks,
@@ -7,124 +6,129 @@ import {
   footerResourceLinks,
   offices,
 } from "@/lib/data/navigation"
-import { site } from "@/lib/data/site"
+import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react"
 
-export default function Footer() {
+export function Footer() {
+  const socials = [
+    { href: site.socials.facebook, Icon: Facebook },
+    { href: site.socials.linkedin, Icon: Linkedin },
+    { href: site.socials.instagram, Icon: Instagram },
+    { href: site.socials.twitter, Icon: Twitter },
+  ]
+
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+    <footer className="bg-surface border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-bold text-sm">
+                E
+              </span>
+              <span className="font-display font-bold text-white text-sm">{site.name}</span>
+            </div>
+            <p className="text-muted text-xs leading-relaxed mb-4">{site.tagline}</p>
+            <div className="flex gap-3">
+              {socials.map(({ href, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted hover:text-violet-400 hover:border-violet-600 transition-colors"
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
           {/* Company */}
           <div>
-            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Company</h4>
-            <ul className="flex flex-col gap-3">
-              {footerCompanyLinks.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
+              Company
+            </p>
+            {footerCompanyLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="block text-muted hover:text-white text-sm py-1 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
           </div>
 
           {/* Industries */}
           <div>
-            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Industries We Serve</h4>
-            <ul className="flex flex-col gap-3">
-              {footerIndustryLinks.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
+              Industries
+            </p>
+            {footerIndustryLinks.slice(0, 6).map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="block text-muted hover:text-white text-sm py-1 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Services & Solutions</h4>
-            <ul className="flex flex-col gap-3">
-              {footerServiceLinks.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
+              Services
+            </p>
+            {footerServiceLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="block text-muted hover:text-white text-sm py-1 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
           </div>
 
-          {/* Resources */}
+          {/* Resources + Offices */}
           <div>
-            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Resources</h4>
-            <ul className="flex flex-col gap-3">
-              {footerResourceLinks.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="text-gray-400 text-sm hover:text-[var(--color-teal)] transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Offices */}
-          <div>
-            <h4 className="text-gray-100 font-bold text-xs uppercase tracking-widest mb-5">Our Offices</h4>
-            <div className="flex flex-col gap-5">
-              {offices.map((office) => (
-                <div key={office.country}>
-                  <p className="text-gray-100 text-xs font-bold">
-                    {office.country}{" "}
-                    <span className="text-gray-500 font-normal">({office.type})</span>
-                  </p>
-                  <p className="text-gray-400 text-xs mt-1 leading-relaxed">{office.address}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
+              Resources
+            </p>
+            {footerResourceLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="block text-muted hover:text-white text-sm py-1 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+            <p className="text-xs font-semibold text-white uppercase tracking-widest mt-6 mb-4">
+              Offices
+            </p>
+            {offices.map((o) => (
+              <div key={o.country} className="mb-3">
+                <p className="text-white text-xs font-medium">{o.country}</p>
+                <p className="text-muted text-xs leading-relaxed">{o.address}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-6 flex-wrap">
-              <Link href="/" className="text-[var(--color-teal)] font-black text-xl">
-                {site.logoLetter}
-              </Link>
-              <Link href="/terms-conditions" className="text-gray-500 text-xs hover:text-white transition-colors">
-                Terms and Conditions
-              </Link>
-              <Link href="/privacy-policy" className="text-gray-500 text-xs hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-            </div>
-
-            <Link
-              href={`mailto:${site.email}`}
-              className="text-[var(--color-teal)] text-sm font-semibold hover:underline"
-            >
-              {site.email}
-            </Link>
-
-            <div className="flex items-center gap-4">
-              <Link href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
-                <Facebook size={18} />
-              </Link>
-              <Link href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
-                <Linkedin size={18} />
-              </Link>
-              <Link href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
-                <Instagram size={18} />
-              </Link>
-              <Link href={site.socials.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--color-teal)] transition-colors">
-                <Twitter size={18} />
-              </Link>
-            </div>
+        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-muted text-xs">
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <div className="flex gap-4">
+            <a href="/privacy-policy" className="text-muted hover:text-white text-xs transition-colors">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="text-muted hover:text-white text-xs transition-colors">
+              Terms & Conditions
+            </a>
           </div>
         </div>
       </div>
