@@ -11,8 +11,8 @@
   --color-muted: #71717a;
   --color-border: rgba(255, 255, 255, 0.08);
 
-  --font-display: var(--font-syne);
-  --font-body: var(--font-inter);
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
 }
 
 @layer base {

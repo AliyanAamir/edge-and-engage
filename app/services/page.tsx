@@ -84,7 +84,7 @@ export default function ServicesPage() {
                 >
                   <div className="w-8 h-8 rounded-lg bg-violet-600/20 mb-4 group-hover:bg-violet-600/30 transition-colors" />
                   <p className="text-white font-medium text-sm mb-2">{s.name}</p>
-                  <p className="text-xs text-muted mb-4 flex-1 line-clamp-2">{s.description}</p>
+                  <p className="text-xs text-muted mb-4 flex-1 line-clamp-2">{s.desc}</p>
                   <ArrowRight className="w-4 h-4 text-muted group-hover:text-violet-400 group-hover:translate-x-1 transition-all" />
                 </motion.a>
               </WobbleCard>
