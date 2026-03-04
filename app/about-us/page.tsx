@@ -1,9 +1,14 @@
+'use client';
+
 import { PageTransition } from "@/components/ui/PageTransition"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber"
 import { leaders } from "@/lib/data/leadership"
 import { offices } from "@/lib/data/navigation"
 import { Linkedin } from "lucide-react"
+import { TextGenerateEffect } from "@/components/ui/aceternity/TextGenerateEffect"
+import { MovingBorder } from "@/components/ui/aceternity/MovingBorder"
+import { motion } from "framer-motion"
 
 export const metadata = { title: "About Us — Edge and Engage" }
 
@@ -14,21 +19,30 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="py-24 bg-bg text-center">
           <div className="max-w-4xl mx-auto px-6">
-            <span className="text-xs font-semibold text-violet-400 uppercase tracking-widest">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-xs font-semibold text-violet-400 uppercase tracking-widest"
+            >
               Who We Are
-            </span>
-            <h1 className="font-display text-5xl md:text-7xl font-bold text-white mt-4 mb-6">
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-display text-5xl md:text-7xl font-bold text-white mt-4 mb-6"
+            >
               Built on Trust.
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-violet-600">
                 Driven by Innovation.
               </span>
-            </h1>
-            <p className="text-muted text-lg max-w-2xl mx-auto">
-              Edge and Engage is a global technology partner helping businesses across North
-              America, Middle East, Africa and Asia Pacific transform through cutting-edge software
-              solutions.
-            </p>
+            </motion.h1>
+            <TextGenerateEffect
+              words="Edge and Engage is a global technology partner helping businesses across North America, Middle East, Africa and Asia Pacific transform through cutting-edge software solutions and strategic digital transformation."
+              className="text-muted text-lg max-w-2xl mx-auto"
+            />
           </div>
         </section>
 
@@ -41,17 +55,23 @@ export default function AboutPage() {
               { value: 250, suffix: "+", label: "Active Clients" },
               { value: 15, suffix: "+", label: "Years Experience" },
             ].map((s) => (
-              <div key={s.label}>
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
                 <p className="font-display text-4xl font-bold text-white">
                   <AnimatedNumber value={s.value} suffix={s.suffix} />
                 </p>
                 <p className="text-muted text-sm mt-1">{s.label}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Values */}
+        {/* Values with Moving Border */}
         <section className="py-24 bg-bg">
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading label="Our Culture" title="What Drives Us" className="mb-12" />
@@ -59,22 +79,24 @@ export default function AboutPage() {
               {[
                 {
                   title: "Client Obsession",
-                  desc: "We measure success by the outcomes we create for our clients, not just the code we ship.",
+                  desc: "We measure success by the outcomes we create for our clients, not just the code we ship. Your goals become our mission.",
                 },
                 {
                   title: "Engineering Excellence",
-                  desc: "We hold ourselves to the highest technical standards on every engagement.",
+                  desc: "We hold ourselves to the highest technical standards on every engagement. Quality and performance are non-negotiable.",
                 },
                 {
                   title: "Global Mindset",
-                  desc: "Diverse teams across 5 continents bring perspective that drives better solutions.",
+                  desc: "Diverse teams across 5 continents bring perspective that drives better solutions. We celebrate cultural diversity.",
                 },
               ].map((v) => (
-                <div key={v.title} className="p-6 rounded-2xl bg-surface border border-border">
-                  <div className="w-8 h-8 rounded-lg bg-violet-600/20 mb-4" />
-                  <h3 className="text-white font-semibold mb-2">{v.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{v.desc}</p>
-                </div>
+                <MovingBorder key={v.title} duration={3000} className="rounded-2xl">
+                  <div className="p-6 rounded-2xl bg-surface border border-border h-full">
+                    <div className="w-8 h-8 rounded-lg bg-violet-600/20 mb-4" />
+                    <h3 className="text-white font-semibold mb-2">{v.title}</h3>
+                    <p className="text-muted text-sm leading-relaxed">{v.desc}</p>
+                  </div>
+                </MovingBorder>
               ))}
             </div>
           </div>
@@ -85,10 +107,14 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading label="Leadership" title="Meet the Team" className="mb-12" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {leaders.map((l) => (
-                <div
+              {leaders.map((l, i) => (
+                <motion.div
                   key={l.name}
-                  className="flex flex-col items-center text-center p-5 rounded-2xl bg-surface-2 border border-border"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center text-center p-5 rounded-2xl bg-surface-2 border border-border hover:border-violet-600/60 transition-all"
                 >
                   <div className="w-16 h-16 rounded-full bg-violet-600/20 flex items-center justify-center text-violet-400 font-bold text-lg mb-3">
                     {l.initials}
@@ -103,7 +129,7 @@ export default function AboutPage() {
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -114,14 +140,21 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading label="Global Presence" title="Our Offices" className="mb-12" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {offices.map((o) => (
-                <div key={o.country} className="p-6 rounded-2xl bg-surface border border-border">
+              {offices.map((o, i) => (
+                <motion.div
+                  key={o.country}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="p-6 rounded-2xl bg-surface border border-border hover:border-violet-600/60 transition-all"
+                >
                   <p className="text-violet-400 text-xs font-semibold uppercase tracking-widest mb-1">
                     {o.type}
                   </p>
                   <p className="text-white font-semibold mb-2">{o.country}</p>
                   <p className="text-muted text-sm leading-relaxed">{o.address}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
