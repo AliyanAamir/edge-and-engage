@@ -2,12 +2,22 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/Button"
 import { site } from "@/lib/data/site"
+import { BackgroundBeams } from "@/components/ui/aceternity/BackgroundBeams"
+import { Spotlight } from "@/components/ui/aceternity/Spotlight"
 
 const publications = ["Forbes", "Business Insider", "Mashable", "Yahoo Finance", "Khaleej Times"]
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-bg">
+      {/* Aceternity Background Beams */}
+      <BackgroundBeams className="absolute inset-0" />
+
+      {/* Aceternity Spotlights */}
+      <Spotlight className="absolute top-0 left-20" fill="rgba(124, 58, 237, 0.3)" />
+      <Spotlight className="absolute top-40 right-10" fill="rgba(124, 58, 237, 0.2)" />
+      <Spotlight className="absolute bottom-20 left-1/2" fill="rgba(124, 58, 237, 0.15)" />
+
       {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"

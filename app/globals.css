@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   --color-bg: #050507;
   --color-surface: #0d0d14;
   --color-surface-2: #13131f;
@@ -15,37 +15,43 @@
   --font-body: var(--font-inter);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body), sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-violet);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-violet);
+    border-radius: 2px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body), sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-::selection {
-  background: var(--color-violet);
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-violet);
-  border-radius: 2px;
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

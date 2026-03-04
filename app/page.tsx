@@ -6,6 +6,9 @@ import { IndustriesSection } from "@/components/sections/IndustriesSection"
 import { InsightsPreview } from "@/components/sections/InsightsPreview"
 import { LeadershipCarousel } from "@/components/sections/LeadershipCarousel"
 import { ContactCTA } from "@/components/sections/ContactCTA"
+import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection"
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection"
+import { PartnersMarquee } from "@/components/sections/PartnersMarquee"
 
 export default function HomePage() {
   return (
@@ -14,8 +17,11 @@ export default function HomePage() {
         <HeroSection />
         <ServicesPreview />
         <StatsBand />
+        <HowWeWorkSection />
         <IndustriesSection />
+        <TestimonialsSection />
         <InsightsPreview />
+        <PartnersMarquee />
         <LeadershipCarousel />
         <ContactCTA />
       </main>

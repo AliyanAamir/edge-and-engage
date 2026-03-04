@@ -1,0 +1,18 @@
+export const partners = [
+  "Microsoft",
+  "Amazon Web Services",
+  "Google Cloud",
+  "Salesforce",
+  "Oracle",
+  "SAP",
+  "IBM",
+  "Atlassian",
+  "GitHub",
+  "Cloudflare",
+  "MongoDB",
+  "Stripe",
+  "Twilio",
+  "Datadog",
+  "HashiCorp",
+  "Confluent",
+]

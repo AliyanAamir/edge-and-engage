@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading"
 import { insights } from "@/lib/data/insights"
 import { stagger, fadeUp } from "@/lib/animations"
 import { Button } from "@/components/ui/Button"
+import { HoverEffect } from "@/components/ui/aceternity/HoverEffect"
 
 const cardVisuals = [
   {
@@ -41,52 +42,53 @@ export function InsightsPreview() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {insights.map((item, i) => {
+          <HoverEffect items={insights.map((item, i) => {
             const visual = cardVisuals[i % cardVisuals.length]
             const { Icon } = visual
-            return (
-              <motion.a
-                key={item.id}
-                href={item.href}
-                variants={fadeUp}
-                className="group flex flex-col rounded-2xl bg-surface border border-border hover:border-violet-600/60 transition-all overflow-hidden"
-              >
-                {/* Visual header */}
-                <div className={`relative h-44 bg-gradient-to-br ${visual.bg} bg-surface-2 flex items-center justify-center overflow-hidden`}>
-                  <div className="absolute inset-0 opacity-30">
-                    <div className="absolute top-4 right-4 w-24 h-24 rounded-full bg-white/5 blur-2xl" />
-                    <div className="absolute bottom-0 left-8 w-20 h-20 rounded-full bg-violet-600/20 blur-xl" />
+            return {
+              key: item.id,
+              href: item.href,
+              title: item.title,
+              description: item.excerpt,
+              content: (
+                <>
+                  {/* Visual header */}
+                  <div className={`relative h-44 bg-gradient-to-br ${visual.bg} bg-surface-2 flex items-center justify-center overflow-hidden`}>
+                    <div className="absolute inset-0 opacity-30">
+                      <div className="absolute top-4 right-4 w-24 h-24 rounded-full bg-white/5 blur-2xl" />
+                      <div className="absolute bottom-0 left-8 w-20 h-20 rounded-full bg-violet-600/20 blur-xl" />
+                    </div>
+                    <div className="relative w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">
+                      <Icon className={`w-7 h-7 ${visual.iconColor}`} />
+                    </div>
+                    <div className="absolute top-3 right-3">
+                      <span className="text-[10px] text-zinc-500 font-medium">{item.readTime} read</span>
+                    </div>
                   </div>
-                  <div className="relative w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">
-                    <Icon className={`w-7 h-7 ${visual.iconColor}`} />
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <span className="text-[10px] text-zinc-500 font-medium">{item.readTime} read</span>
-                  </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
-                  <span
-                    className={`self-start text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
-                      item.type === "Case Study"
-                        ? "bg-violet-600/20 text-violet-400"
-                        : "bg-zinc-800 text-zinc-400"
-                    }`}
-                  >
-                    {item.type}
-                  </span>
-                  <p className="text-white font-semibold text-sm leading-snug mb-2 group-hover:text-violet-300 transition-colors">
-                    {item.title}
-                  </p>
-                  <p className="text-zinc-500 text-xs leading-relaxed flex-1">{item.excerpt}</p>
-                  <div className="flex items-center gap-1 mt-4 text-violet-400 text-xs font-medium group-hover:gap-2 transition-all">
-                    Read more <ArrowRight className="w-3 h-3" />
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <span
+                      className={`self-start text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
+                        item.type === "Case Study"
+                          ? "bg-violet-600/20 text-violet-400"
+                          : "bg-zinc-800 text-zinc-400"
+                      }`}
+                    >
+                      {item.type}
+                    </span>
+                    <p className="text-white font-semibold text-sm leading-snug mb-2 group-hover:text-violet-300 transition-colors">
+                      {item.title}
+                    </p>
+                    <p className="text-zinc-500 text-xs leading-relaxed flex-1">{item.excerpt}</p>
+                    <div className="flex items-center gap-1 mt-4 text-violet-400 text-xs font-medium group-hover:gap-2 transition-all">
+                      Read more <ArrowRight className="w-3 h-3" />
+                    </div>
                   </div>
-                </div>
-              </motion.a>
-            )
-          })}
+                </>
+              )
+            }
+          })} />
         </motion.div>
       </div>
     </section>
