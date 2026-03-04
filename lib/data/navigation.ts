@@ -30,7 +30,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   {
     label: "What we do",
-    href: "#",
+    href: "/services",
     megaMenu: {
       title: "Capabilities",
       columns: [
@@ -118,7 +118,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Who we help",
-    href: "#",
+    href: "/services",
     megaMenu: {
       title: "Industries",
       columns: [
@@ -153,7 +153,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Who We Are",
-    href: "#",
+    href: "/about-us",
     megaMenu: {
       title: "Company",
       columns: [
@@ -187,7 +187,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "How we deliver",
-    href: "#",
+    href: "/about-us",
     megaMenu: {
       title: "Our Approach",
       columns: [
@@ -196,8 +196,8 @@ export const navItems: NavItem[] = [
             {
               heading: "Methodology",
               links: [
-                { label: "Discovery & Strategy", href: "#" },
-                { label: "Agile Development", href: "#" },
+                { label: "Discovery & Strategy", href: "/about-us" },
+                { label: "Agile Development", href: "/about-us" },
                 { label: "Quality Assurance", href: "/services/quality-assurance" },
                 { label: "DevOps & Deployment", href: "/services/devops" },
               ],
@@ -209,9 +209,9 @@ export const navItems: NavItem[] = [
             {
               heading: "Partnerships",
               links: [
-                { label: "Microsoft", href: "#" },
-                { label: "AWS", href: "#" },
-                { label: "Google Cloud", href: "#" },
+                { label: "Microsoft", href: "https://microsoft.com" },
+                { label: "AWS", href: "https://aws.amazon.com" },
+                { label: "Google Cloud", href: "https://cloud.google.com" },
                 { label: "Salesforce", href: "/services/salesforce" },
               ],
             },
