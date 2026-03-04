@@ -15,7 +15,7 @@ export function ContactCTA() {
             remarkable.
           </span>
         </h2>
-        <p className="text-muted text-lg mb-10 max-w-xl mx-auto">
+        <p className="text-zinc-400 text-lg mb-10 max-w-xl mx-auto">
           Tell us about your project and we&apos;ll get back within 24 hours.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

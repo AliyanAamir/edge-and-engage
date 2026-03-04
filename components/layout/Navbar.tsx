@@ -18,15 +18,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler)
   }, [])
 
+  const activeItem = navItems.find((i) => i.label === activeMenu)
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "backdrop-blur-md bg-bg/80 border-b border-border" : "bg-transparent"
+        scrolled ? "backdrop-blur-md bg-bg/90 border-b border-border" : "bg-transparent"
       }`}
+      onMouseLeave={() => setActiveMenu(null)}
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-display font-bold text-sm">
             E
           </span>
@@ -36,54 +39,22 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <li
               key={item.label}
-              className="relative"
               onMouseEnter={() => setActiveMenu(item.label)}
-              onMouseLeave={() => setActiveMenu(null)}
             >
-              <button className="flex items-center gap-1 text-sm text-muted hover:text-white transition-colors">
+              <button className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
                 {item.label}
-                {item.megaMenu && <ChevronDown className="w-3 h-3" />}
-              </button>
-              <AnimatePresence>
-                {activeMenu === item.label && item.megaMenu && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max max-w-2xl bg-surface-2 border border-border rounded-2xl p-6 shadow-2xl"
-                  >
-                    <div className="flex gap-8">
-                      {item.megaMenu.columns.map((col, ci) => (
-                        <div key={ci} className="flex flex-col gap-4">
-                          {col.groups.map((group, gi) => (
-                            <div key={gi}>
-                              {group.heading && (
-                                <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-2">
-                                  {group.heading}
-                                </p>
-                              )}
-                              {group.links.map((link) => (
-                                <a
-                                  key={link.href}
-                                  href={link.href}
-                                  className="block text-sm text-muted hover:text-white py-1 transition-colors"
-                                >
-                                  {link.label}
-                                </a>
-                              ))}
-                            </div>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+                {item.megaMenu && (
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      activeMenu === item.label ? "rotate-180 text-violet-400" : ""
+                    }`}
+                  />
                 )}
-              </AnimatePresence>
+              </button>
             </li>
           ))}
         </ul>
@@ -99,10 +70,54 @@ export function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button className="lg:hidden text-white" onClick={() => setOpen(!open)}>
+        <button className="lg:hidden text-white p-1" onClick={() => setOpen(!open)}>
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </nav>
+
+      {/* Full-width Mega Menu Dropdown */}
+      <AnimatePresence>
+        {activeItem?.megaMenu && (
+          <motion.div
+            key={activeMenu}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="border-b border-border bg-surface-2 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+          >
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              <div className="flex gap-10">
+                {activeItem.megaMenu.columns.map((col, ci) => (
+                  <div key={ci} className="flex flex-col gap-6 min-w-40">
+                    {col.groups.map((group, gi) => (
+                      <div key={gi}>
+                        {group.heading && (
+                          <p className="text-[10px] font-bold text-violet-400 uppercase tracking-[0.15em] mb-2.5 pb-2 border-b border-white/5">
+                            {group.heading}
+                          </p>
+                        )}
+                        <div className="flex flex-col">
+                          {group.links.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 px-2 py-1.5 rounded-md transition-all duration-150 group"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-violet-600/50 group-hover:bg-violet-400 transition-colors shrink-0" />
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -111,20 +126,28 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-surface border-b border-border px-6 py-4 flex flex-col gap-4"
+            className="lg:hidden bg-surface border-b border-border overflow-hidden"
           >
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-muted hover:text-white transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-            <Button variant="primary" size="sm" href="/contact" className="mt-2">
-              Let&apos;s Talk
-            </Button>
+            <div className="px-6 py-4 flex flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition-all"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="mt-3 pt-3 border-t border-border flex gap-2">
+                <Button variant="outline" size="sm" href={site.careersUrl} className="flex-1 justify-center">
+                  Careers
+                </Button>
+                <Button variant="primary" size="sm" href="/contact" className="flex-1 justify-center">
+                  Let&apos;s Talk
+                </Button>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

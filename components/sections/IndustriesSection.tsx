@@ -1,9 +1,23 @@
 "use client"
 import { motion } from "framer-motion"
+import { Plane, Radio, Zap, ShoppingBag, Heart, Landmark, Store, Rocket, CreditCard, Gamepad2 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { industries } from "@/lib/data/industries"
 import { stagger, fadeUp } from "@/lib/animations"
 import { Button } from "@/components/ui/Button"
+
+const iconMap: Record<string, React.ElementType> = {
+  travel: Plane,
+  telecom: Radio,
+  energy: Zap,
+  ecommerce: ShoppingBag,
+  health: Heart,
+  public: Landmark,
+  retail: Store,
+  startups: Rocket,
+  fintech: CreditCard,
+  gaming: Gamepad2,
+}
 
 export function IndustriesSection() {
   return (
@@ -23,19 +37,24 @@ export function IndustriesSection() {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
         >
-          {industries.map((ind) => (
-            <motion.a
-              key={ind.id}
-              href={ind.href}
-              variants={fadeUp}
-              className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-border hover:border-violet-600/60 hover:bg-violet-600/5 transition-all text-center"
-            >
-              <div className="w-10 h-10 rounded-xl bg-violet-600/20 group-hover:bg-violet-600/30 transition-colors" />
-              <p className="text-muted group-hover:text-white text-xs font-medium transition-colors">
-                {ind.label}
-              </p>
-            </motion.a>
-          ))}
+          {industries.map((ind) => {
+            const Icon = iconMap[ind.id] ?? Landmark
+            return (
+              <motion.a
+                key={ind.id}
+                href={ind.href}
+                variants={fadeUp}
+                className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-border hover:border-violet-600/60 hover:bg-violet-600/5 transition-all text-center"
+              >
+                <div className="w-12 h-12 rounded-xl bg-violet-600/15 flex items-center justify-center group-hover:bg-violet-600/25 transition-colors">
+                  <Icon className="w-5 h-5 text-violet-400" />
+                </div>
+                <p className="text-zinc-400 group-hover:text-white text-xs font-medium transition-colors leading-snug">
+                  {ind.label}
+                </p>
+              </motion.a>
+            )
+          })}
         </motion.div>
         <div className="mt-12 text-center">
           <Button href="/contact" size="lg">
