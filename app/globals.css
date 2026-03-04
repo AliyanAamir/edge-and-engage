@@ -15,37 +15,33 @@
   --font-body: var(--font-inter);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body), sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body), sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+  ::selection {
+    background: var(--color-violet);
+    color: #fff;
+  }
 
-::selection {
-  background: var(--color-violet);
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-violet);
-  border-radius: 2px;
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-violet);
+    border-radius: 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
