@@ -8,12 +8,12 @@ export const site = {
   tagline: "Building at the Speed of AI",
   subTagline:
     "We help companies across North America, Middle East, Africa and Asia Pacific with technological development",
-  email: "global.business@edgeandenggage.com",
-  careersUrl: "https://apply.workable.com/edge-and-engage/",
+  email: "hello@edgeengage.io",
+  careersUrl: "/careers",
   socials: {
-    facebook: "https://www.facebook.com/edgeandenggage/",
-    linkedin: "https://www.linkedin.com/company/edge-and-engage",
-    instagram: "https://www.instagram.com/edgeandenggage/",
-    twitter: "https://x.com/edgeandenggage",
+    facebook: "https://www.facebook.com/edgeengage",
+    linkedin: "https://www.linkedin.com/company/edge-engage",
+    instagram: "https://www.instagram.com/edgeengage",
+    twitter: "https://x.com/edgeengage",
   },
 }

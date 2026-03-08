@@ -13,14 +13,14 @@ export const testimonials: Testimonial[] = [
     company: "FinEdge Ltd",
   },
   {
-    quote: "They did not just build our app -- they transformed our entire digital strategy. Revenue is up 127% since launch and our customers love the experience.",
-    name: "Ahmed Al-Rashidi",
+    quote: "They did not just build our app — they transformed our entire digital strategy. Revenue is up 127% since launch and our customers love the experience.",
+    name: "Marcus Reid",
     title: "CEO",
-    company: "GulfCart",
+    company: "CartNova",
   },
   {
     quote: "The AI solutions they implemented reduced our operational costs by 40% in the first quarter. Their team understood our business from day one.",
-    name: "Dr. Fatima Al-Mansoori",
+    name: "Dr. Elena Vasquez",
     title: "Chief Medical Officer",
     company: "MedConnect Pro",
   },
@@ -38,7 +38,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote: "The largest digital transformation in our country's history, delivered on time and under budget. Their project management discipline is exceptional.",
-    name: "Mohammed Al-Harbi",
+    name: "David Harlow",
     title: "Director of Digital Transformation",
     company: "GovServe Digital",
   },
@@ -50,7 +50,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote: "Edge and Engage brought a level of DevOps maturity we did not think was achievable in our timeline. Deployments went from monthly to daily with zero incidents.",
-    name: "Rashid Al-Mahmoud",
+    name: "Oliver Grant",
     title: "Head of Engineering",
     company: "Telecom Gulf",
   },
